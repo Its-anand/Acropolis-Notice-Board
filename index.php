@@ -80,7 +80,11 @@ session_start();
             </div>
             <a href='' class='notice_url'>
                <div class='notice_iframe'>
-
+                  <h3 class='notice_iframe_heading'><?php echo $res['notice_title']; ?></h3>
+                  <p class='notice_iframe_date'><b>Date : </b><?php echo $res['notice_date']; ?></p>
+                  <p class='notice_iframe_body'><?php echo $res['notice_body']; ?></p>
+                  <p class='notice_iframe_writer_role'><b><?php echo $res['notice_writer_role']; ?></b></p>
+                  <p class='notice_iframe_writer_name'><?php echo $res['notice_writer_name']; ?></p>
                </div>
             </a>
          </div>
@@ -102,7 +106,7 @@ session_start();
             <form method='POST' style='display: inline;' action='./index_files/remove_word.php' name = 'del_form' id='cancel_btn'>
             <input type='hidden' name='rmv_word_id' >
             <button name='Del_word' type='submit'>Yes</button>
-            </form>zz
+            </form>
             <button class='del_no'>No</button>
         </div>
         ";
