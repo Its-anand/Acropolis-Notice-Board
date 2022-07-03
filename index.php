@@ -3,7 +3,6 @@
 <?php 
 include('./index_files/Data/connection.php');
 session_start();
-
 ?>
 
 <head>
@@ -24,376 +23,178 @@ session_start();
 </head>
 
 <body>
-   <!--Tab Group-->
-   <?php 
-if(isset($_SESSION['StudentLoginId']) && $_SESSION['StudentLoginId']==true)
-{
-?>
-
-   <nav id="nav" class="tab">
-      <ul>
-         <li class="old_notices">Old Notices</li>
-         <li class="student_saved_notices_btn">Saved Notices</li>
-         <li class="about">About</li>
-         <li class="contactus">Contact Us</li>
-         <li><a style='color: #cd6161;' href="./index_files/Data/logout.php">Signout</a></li>
-         <a id="go_back_btn" class="button_css setting">Go Back</a>
-      </ul>
-   </nav>
-
-<?php
-}
-else if(isset($_SESSION['AdminLoginId']) && $_SESSION['AdminLoginId']==true)
-{?>
-
-   <nav id="nav" class="tab">
-      <ul>
-         <li class="create_notice_btn">Create Notice</li>
-         <li class="old_notices">Old Notices</li>
-         <li class="admin_saved_notices_btn">Saved Notices</li>
-         <li class="contactus">Contact Us</li>
-         <li><a style='color: #cd6161;' href="./index_files/Data/logout.php">Signout</a></li>
-         <a id="go_back_btn" class="button_css setting">Go Back</a>
-      </ul>
-   </nav>
-
-<?php
-}
-else
-{?>
-
-   <nav id="nav" class="tab">
-      <ul>
-         <li class="s_login_button">Student Login</li>
-         <li class="a_login_button">Admin Login</li>
-         <li class="old_notices">Old Notices</li>
-         <li class="about">About</li>
-         <li class="contactus">Contact Us</li>
-         <a id="go_back_btn" class="button_css setting">Go Back</a>
-      </ul>
-   </nav>
-
-<?php
-}
-?>
-
-<nav id="comment_system" class="tab ">
-      <ul>
-         <li class="login_button">Comment</li>
-         <a id="go_back_btn" class="button_css comment_panel_btn">Go Back</a>
-      </ul>
-   </nav>
-<?php 
-
-if(isset($_SESSION['StudentLoginId']) && $_SESSION['StudentLoginId']==true)
-{
-?>
-   <nav id="s_login" class="tab ">
-      <form action="./index_files/Data/login.php" method="post">
-         <ul>
-            <li class="login_button">You have already signed in</li>
-            <a id="go_back_btn" href='./index_files/Data/logout.php' class="button_css a_panel_btn">Log Out</a> <br>
-            <br>
-            <a id="go_back_btn" class="button_css s_panel_btn">Go Back</a>
-         </ul>
-      </form>
-   </nav>
-<?php
-}
-else
-{?>
-   <nav id="s_login" class="tab ">
-      <form action="./index_files/Data/login.php" method="post">
-         <ul>
-            <li class="login_button">Student Login</li>
-            <li><input type="text" name='stu_name' placeholder="Username *" class="button_css input_text_css"></li>
-            <li><input type="password" name='stu_password' placeholder="Password *" class="button_css input_text_css"></li>
-            <li><input type="submit" name='slogin' value="Submit" class="button_css"></li>
-            <a id="go_back_btn" class="button_css s_panel_btn">Go Back</a>
-         </ul>
-      </form>
-   </nav>
-   <?php
-}
-?>
-   <?php 
-if(isset($_SESSION['AdminLoginId']) && $_SESSION['AdminLoginId']==true)
-{
-?>
-   <nav id="a_login" class="tab ">
-      <ul>
-         <li class="login_button">You have already signed in</li>
-         <a id="go_back_btn" href='./index_files/Data/logout.php' class="button_css a_panel_btn">Log Out</a> <br>
-         <a id="go_back_btn" class="button_css a_panel_btn">Go Back</a>
-      </ul>
-   </nav>
-   <?php
-}
-else
-{?>
-   <nav id="a_login" class="tab ">
-      <form action="./index_files/Data/login.php" method="post">
-         <ul>
-            <li class="login_button">Admin Login</li>
-            <li><input type="text" placeholder="Admin name *" name='admin_name' class="button_css input_text_css"
-                  require></li>
-            <li><input type="password" placeholder="Password *" name='admin_password' class="button_css input_text_css"
-                  require></li>
-            <li><input type="submit" name='submit' class="button_css"></li>
-            <a id="go_back_btn" class="button_css a_panel_btn">Go Back</a>
-         </ul>
-      </form>
-   </nav>
-   <?php
-}
-?>
-   <?php 
-if(isset($_SESSION['AdminLoginId']) && $_SESSION['AdminLoginId']==true)
-{?>
-   <nav id="create_notice" class="tab ">
-      <ul>
-         <li class="login_button">Create Notice</li>
-         <a id="go_back_btn" class="button_css create_notice_go_back">Go Back</a>
-      </ul>
-   </nav>
-<?php
-}
-else
-{?>
-   <nav id="create_notice" class="tab ">
-      <ul>
-         <li class="login_button">Only admin can create Notice</li>
-         <a id="go_back_btn" class="button_css create_notice_go_back">Go Back</a>
-      </ul>
-   </nav>
-   <?php
-}
-?>
-   <nav id="admin_saved_notices" class="tab ">
-      <ul>
-         <li class="login_button">a Saved notice</li>
-         <a id="go_back_btn" class="button_css admin_saved_notices_go_back">Go Back</a>
-      </ul>
-   </nav>
-
-   <nav id="student_saved_notices" class="tab ">
-      <ul>
-         <li class="login_button">s Saved notice</li>
-         <a id="go_back_btn" class="button_css student_saved_notices_go_back">Go Back</a>
-      </ul>
-   </nav>
-
-   <nav id="old_ntc" class="tab ">
-      <ul>
-         <li class="login_button">Old Notices</li>
-         <a id="go_back_btn" class="button_css ntc_btn">Go Back</a>
-      </ul>
-   </nav>
-   <nav id="abt" class="tab ">
-      <ul>
-         <li class="login_button">About</li>
-         <p>
-            This web application is desined and created by Anand Choudhary and his team mamber to simplify and modify
-            the notice system in the college.
-         </p>
-         <a id="go_back_btn" class="button_css about_btn">Go Back</a>
-      </ul>
-   </nav>
-   <nav id="contact" class="tab ">
-      <ul>
-         <li class="login_button">Contact Us</li>
-         <li><input type="text" name="subject" placeholder="Subject" class="button_css contactus_text_css" id="subject">
-         </li>
-         <li><input type="email" name="email" class="button_css contactus_text_css" id="email"
-               placeholder="Enter Email"></li>
-         <li><textarea name="msg" placeholder="Write Your Message..." id="message" class="textarea_css " cols="30"
-               rows="10" form="contactusform"></textarea></li>
-         <li><input type="submit" name="Submit" id="submit" class="button_css " placeholder="Enter Submit"></li>
-         <a id="go_back_btn" class="button_css contactus_btn">Go Back</a>
-      </ul>
-   </nav>
    <div id="notice_frame">
       <div class="notice_container">
-         <div class="menu_header">
-            <p>Acropolis Institute<br>of Technology And Research</p>
-            <p id="date">Date: 10/02/2021</p>
-            <p>Notice</p>
-            <p>Extraordinary Meeting of Governing Body</p>
-            <p>All students are hereby informed about a change in school timings from 1st October, 20xx. The school will
-               now start at 9 a.m. & end at 3 p.m. In the past few years, it has been seen that winters are rather
-               severe and it becomes quite difficult to start early due to the extreme cold weather and the dense fog.
-               So these new timings will be followed till further notice. All students are hereby informed about a
-               change in school timings from 1st October, 20xx. The school will now start at 9 a.m. & end at 3 p.m. In
-               the past few years, it has been seen that winters are rather severe and it becomes quite difficult to
-               start early due to the extreme cold weather and the dense fog. So these new timings will be followed till
-               further notice. </p>
-            <p>All students are hereby informed about a change in school timings from 1st October, 20xx. The school will
-               now start at 9 a.m. & end at 3 p.m. In the past few years, it has been seen that winters are rather
-               severe and it becomes quite difficult to start early due to the extreme cold weather and the dense fog.
-               So these new timings will be followed till further notice. All students are hereby informed about a
-               change in school timings from 1st October, 20xx. The school will now start at 9 a.m. & end at 3 p.m. In
-               the past few years, it has been seen that winters are rather severe and it becomes quite difficult to
-               start early due to the extreme cold weather and the dense fog. So these new timings will be followed till
-               further notice. </p>
-            <p id="notice_writer">Lalit
-               <br> Sports Secretary</p>
-            <div id="empty">
+         <p class='notice_head'>All notices</p>
+         <?php
+            $selectquery = "select * from notice ";
+            $query = mysqli_query($con,$selectquery);
+            while($res = mysqli_fetch_array($query))
+            {
+        ?>
+         <div class='notice_body'>
+            <div class="menu_header">
+               <div class='notice_nav_setting'>
+                  <div id="word_no_holder">
+                     <p id="word_no"><?php echo $res['notice_id']; ?></p>
+                  </div>
+                  <div id="edit_del_holder">
+                     <button id="editting_btn" onclick = "edit_word('<?php echo $res['notice_id']; ?>')" class="edit_del_btn">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="edit" fill="#fff" style="cursor:pointer;"
+                           version="1.0" width="17.000000pt" height="17.000000pt" viewBox="0 0 512.000000 512.000000"
+                           preserveAspectRatio="xMidYMid meet">
+                           <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="#ffffff"
+                              stroke="none">
+                              <path
+                                 d="M875 5101 c-314 -79 -538 -317 -601 -639 -21 -110 -21 -3694 0 -3804 55 -280 230 -496 486 -601 131 -54 161 -57 613 -57 391 0 420 1 455 19 47 24 77 56 97 103 40 98 -1 210 -97 259 -34 18 -63 19 -385 19 -191 1 -378 5 -415 9 -175 23 -316 152 -348 320 -14 74 -14 3588 0 3662 32 168 173 297 348 320 88 11 2446 11 2534 0 175 -23 316 -152 348 -320 6 -33 10 -305 10 -700 l0 -647 23 -44 c12 -24 39 -57 60 -74 32 -26 49 -31 106 -34 100 -6 170 35 206 120 22 54 23 1336 1 1450 -65 329 -295 569 -614 642 -63 14 -214 16 -1414 15 -1246 0 -1348 -2 -1413 -18z">
+                              </path>
+                              <path
+                                 d="M1175 3904 c-138 -71 -154 -251 -32 -348 l39 -31 1099 -3 c1066 -2 1100 -2 1137 17 150 77 150 285 0 362 -36 18 -75 19 -1125 19 -966 0 -1091 -2 -1118 -16z">
+                              </path>
+                              <path
+                                 d="M1175 3104 c-138 -71 -154 -251 -32 -348 l39 -31 1099 -3 c1066 -2 1100 -2 1137 17 150 77 150 285 0 362 -36 18 -75 19 -1125 19 -966 0 -1091 -2 -1118 -16z">
+                              </path>
+                              <path
+                                 d="M4101 2385 c-80 -23 -136 -50 -205 -99 -33 -24 -318 -302 -633 -618 l-571 -573 -36 -115 c-212 -691 -219 -715 -220 -782 -1 -59 3 -71 29 -110 17 -23 49 -53 70 -65 71 -40 111 -34 562 91 226 63 426 122 445 131 18 9 297 281 619 603 583 583 587 588 628 672 92 189 93 371 2 555 -66 134 -192 245 -334 295 -82 29 -275 37 -356 15z m226 -406 c64 -24 123 -109 123 -179 0 -45 -30 -108 -67 -142 l-29 -28 -134 135 -134 134 29 32 c17 17 44 37 60 45 36 16 113 18 152 3z m-630 -1006 l-367 -368 -192 -53 c-105 -29 -192 -51 -193 -50 -2 2 23 87 54 191 l56 187 368 367 368 367 137 -137 137 -137 -368 -367z">
+                              </path>
+                              <path
+                                 d="M1175 2304 c-138 -72 -154 -251 -32 -348 l39 -31 708 0 708 0 39 31 c109 87 109 241 0 328 l-39 31 -696 3 c-618 2 -700 0 -727 -14z">
+                              </path>
+                           </g>
+                        </svg>
+
+                     </button>
+                     <button id="delete__btn" onclick = "edit_word('<?php echo $res['notice_id']; ?>')" class="edit_del_btn">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="cancel" fill="#fff" viewBox="0 0 30 30"
+                           width="30px" style="cursor:pointer;" height="30px">
+                           <path
+                              d="M15,3C8.373,3,3,8.373,3,15c0,6.627,5.373,12,12,12s12-5.373,12-12C27,8.373,21.627,3,15,3z M16.414,15 c0,0,3.139,3.139,3.293,3.293c0.391,0.391,0.391,1.024,0,1.414c-0.391,0.391-1.024,0.391-1.414,0C18.139,19.554,15,16.414,15,16.414 s-3.139,3.139-3.293,3.293c-0.391,0.391-1.024,0.391-1.414,0c-0.391-0.391-0.391-1.024,0-1.414C10.446,18.139,13.586,15,13.586,15 s-3.139-3.139-3.293-3.293c-0.391-0.391-0.391-1.024,0-1.414c0.391-0.391,1.024-0.391,1.414,0C11.861,10.446,15,13.586,15,13.586 s3.139-3.139,3.293-3.293c0.391-0.391,1.024-0.391,1.414,0c0.391,0.391,0.391,1.024,0,1.414C19.554,11.861,16.414,15,16.414,15z">
+                           </path>
+                        </svg>
+
+                     </button>
+                  </div>
+               </div>
             </div>
+            <a href='' class='notice_url'>
+               <div class='notice_iframe'>
+
+               </div>
+            </a>
          </div>
-      </div>
-      <div id='botton_container'>
-         <img title='Like' class="button_style" src="./index_files/image/like.jpg" width="50px" alt="">
-         <img title='Comment' class="button_style comment_btn" src="./index_files/image/comment.jpg" alt="">
-         <img title='Save' class="button_style" src="./index_files/image/Save.jpg" alt="">
-         <input type="text" style="display: none;" value="http://127.0.0.1:5500/College%20Project/sem7/index.html"
-            id="myInput">
-         <img title='Share' onclick="getURL();" class="button_style" src="./index_files/image/share.jpg" alt="">
-         <img title='setting' class="button_style setting" src="./index_files/image/setting.jpg" alt="">
+         <?php
+            }
+        ?>
       </div>
    </div>
    
-   <script>
-      
-      //setting
-      $(document).ready(function () {
 
-         $(".setting").click(function () {
-            $("#nav").toggle();
-         });
-      });
-      //comment
-      $(document).ready(function () {
-
-         $(".comment_btn").click(function () {
-            $("#comment_system").toggle();
-         });
-      });
-      //comment go back
-      $(document).ready(function () {
-
-         $(".comment_panel_btn").click(function () {
-            $("#comment_system").toggle();
-         });
-      })
-      //Student login
-      $(document).ready(function () {
-
-         $(".s_login_button").click(function () {
-            $("#s_login").toggle();
-         });
-      });
-      //Student go back      
-      $(document).ready(function () {
-
-         $(".s_panel_btn").click(function () {
-            $("#s_login").toggle();
-         });
-      });
-      //Admin login
-      $(document).ready(function () {
-
-         $(".a_login_button").click(function () {
-            $("#a_login").toggle();
-         });
-      });
-      //Admin go back
-      $(document).ready(function () {
-
-         $(".a_panel_btn").click(function () {
-            $("#a_login").toggle();
-         });
-      });
-      //Create notice
-      $(document).ready(function () {
-
-         $(".create_notice_btn").click(function () {
-            $("#create_notice").toggle();
-         });
-      });
-      //Create notice go back
-      $(document).ready(function () {
-
-         $(".create_notice_go_back").click(function () {
-            $("#create_notice").toggle();
-         });
-      })
-      //Admin Saved notice
-      $(document).ready(function () {
-
-         $(".admin_saved_notices_btn").click(function () {
-            $("#admin_saved_notices").toggle();
-         });
-      });
-      //Admin Saved notice go back
-      $(document).ready(function () {
-
-         $(".admin_saved_notices_go_back").click(function () {
-            $("#admin_saved_notices").toggle();
-         });
-      })
-      //Student Saved notice
-      $(document).ready(function () {
-
-         $(".student_saved_notices_btn").click(function () {
-            $("#student_saved_notices").toggle();
-         });
-      });
-      //Student Saved notice go back
-      $(document).ready(function () {
-
-         $(".student_saved_notices_go_back").click(function () {
-            $("#student_saved_notices").toggle();
-         });
-      })
-      //Old notices 
-      $(document).ready(function () {
-
-         $(".old_notices").click(function () {
-            $("#old_ntc").toggle();
-         });
-      });
-      //Old notices go back
-      $(document).ready(function () {
-
-         $(".ntc_btn").click(function () {
-            $("#old_ntc").toggle();
-         });
-      });
-      //About
-      $(document).ready(function () {
-
-         $(".about").click(function () {
-            $("#abt").toggle();
-         });
-      });
-      //About go back
-      $(document).ready(function () {
-
-         $(".about_btn").click(function () {
-            $("#abt").toggle();
-         });
-      });
-      //contact Us 
-      $(document).ready(function () {
-
-         $(".contactus").click(function () {
-            $("#contact").toggle();
-         });
-      });
-      //contact Us go back
-      $(document).ready(function () {
-
-         $(".contactus_btn").click(function () {
-            $("#contact").toggle();
-         });
-      });
-   </script>
-   <script>
-      function getURL() {
-         navigator.clipboard.writeText(window.location.href);
-         alert("Url of this website is copied");
+   <div class="warning_holder warning1">
+      <div class='warning'>
+      <?php
+      if(isset($_SESSION['logged_in']) && $_SESSION['logged_in']==true)
+      {
+        echo"
+        <h3>Do you want to <span style='color: #CC313D;'>Delete</span> the word</h3>
+        <div>
+            <form method='POST' style='display: inline;' action='./index_files/remove_word.php' name = 'del_form' id='cancel_btn'>
+            <input type='hidden' name='rmv_word_id' >
+            <button name='Del_word' type='submit'>Yes</button>
+            </form>zz
+            <button class='del_no'>No</button>
+        </div>
+        ";
       }
-   </script>
+      else
+      {
+        echo"
+        <div style='margin-top: 3.3rem;'>
+        <a style='text-decoration:none;' href='./index_files/Admin Login.php'>
+        <button class='account_button_signin' type='button'>
+          Sign in
+        </button>
+        </a>
+        <button class='del_no'>No</button>
+        </div>
+      ";
+      }
+      ?>
+      </div>
+    </div>
+    <div class="warning_holder warning2">
+    <div class='warning'>
+            <?php
+      if(isset($_SESSION['logged_in']) && $_SESSION['logged_in']==true)
+      {
+        echo"
+        <h3>Do you want to <span style='color: #31cc9d;'>Edit</span> the word</h3>
+        <div>
+            <form method='POST' style='display: inline;' action='./index_files/edit_word.php' name = 'edit_form' id='edit_btn'>
+            <input type='hidden' name='edit_word_id'>
+            <button name='edit_word' type='submit'>Yes</button>
+            </form>
+            
+            <button class='edit_no'>No</button>
+        </div>
+
+      ";
+      }
+      else
+      {
+        echo"
+        <div style='margin-top: 3.3rem;'>
+        <a style='text-decoration:none;' href='./index_files/Admin Login.php'>
+        <button class='account_button_signin' type='button'>
+          Sign in
+        </button>
+        </a>
+        <button class='edit_no'>No</button>
+        </div>
+      ";
+      }
+      ?>
+
+    </div>
+   <script>
+        //cancel tab button
+                $(document).ready(function() {
+        
+                   $(".cancel").click(function(){
+                      $(".warning1").toggle();
+                   });
+                });
+        //cancel no button
+                $(document).ready(function() {
+        
+                   $(".edit_no").click(function(){
+                      $(".warning2").toggle();
+                   });
+                });
+        //edit tab button
+                $(document).ready(function() {
+        
+                   $(".edit").click(function(){
+                      $(".warning2").toggle();
+                   });
+                });
+        //edit no button
+                $(document).ready(function() {
+        
+                   $(".del_no").click(function(){
+                      $(".warning1").toggle();
+                   });
+                });
+    </script>
+    <script>
+        function edit_word(id)
+        {
+                del_form.rmv_word_id.value = id;
+                edit_form.edit_word_id.value = id;
+        }
+        
+    </script>
 </body>
 
 </html>
