@@ -11,7 +11,7 @@ session_start();
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Acropolis Notice Board</title>
-   <link rel="stylesheet" href="./index_files/css_and_script/index_css.css">
+   <link rel="stylesheet" href="./index_files/css_and_script/NoticePageCss.css">
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
    <link href='https://fonts.googleapis.com/css?family=Fredericka the Great' rel='stylesheet'>
 
@@ -232,28 +232,28 @@ else
    <div id="notice_frame">
       <div class="notice_container">
          <div class="menu_header">
+            <?php
+            if(isset($_GET['id']))
+            {
+               $id = $_GET['id'];
+               $query = "SELECT * FROM `notice` WHERE  `notice_id`= '$id'";
+               $result = mysqli_query($con,$query);
+               $result_fetch=mysqli_fetch_assoc($result);
+               $notice_id=$result_fetch['notice_id'];
+               $notice_date=$result_fetch['notice_date'];
+               $notice_title=$result_fetch['notice_title'];
+               $notice_body=$result_fetch['notice_body'];
+               $notice_writer_role=$result_fetch['notice_writer_role'];
+               $notice_writer_name=$result_fetch['notice_writer_name'];
+            }
+            ?>
             <p>Acropolis Institute<br>of Technology And Research</p>
-            <p id="date">Date: 10/02/2021</p>
+            <p id="date">Date: <?php echo $notice_date; ?></p>
             <p>Notice</p>
-            <p>Extraordinary Meeting of Governing Body</p>
-            <p>All students are hereby informed about a change in school timings from 1st October, 20xx. The school will
-               now start at 9 a.m. & end at 3 p.m. In the past few years, it has been seen that winters are rather
-               severe and it becomes quite difficult to start early due to the extreme cold weather and the dense fog.
-               So these new timings will be followed till further notice. All students are hereby informed about a
-               change in school timings from 1st October, 20xx. The school will now start at 9 a.m. & end at 3 p.m. In
-               the past few years, it has been seen that winters are rather severe and it becomes quite difficult to
-               start early due to the extreme cold weather and the dense fog. So these new timings will be followed till
-               further notice. </p>
-            <p>All students are hereby informed about a change in school timings from 1st October, 20xx. The school will
-               now start at 9 a.m. & end at 3 p.m. In the past few years, it has been seen that winters are rather
-               severe and it becomes quite difficult to start early due to the extreme cold weather and the dense fog.
-               So these new timings will be followed till further notice. All students are hereby informed about a
-               change in school timings from 1st October, 20xx. The school will now start at 9 a.m. & end at 3 p.m. In
-               the past few years, it has been seen that winters are rather severe and it becomes quite difficult to
-               start early due to the extreme cold weather and the dense fog. So these new timings will be followed till
-               further notice. </p>
-            <p id="notice_writer">Lalit
-               <br> Sports Secretary</p>
+            <p><?php echo $notice_title; ?></p>
+            <p><?php echo $notice_body; ?></p>
+            <p id="notice_writer"><?php echo $notice_writer_role; ?>
+               <br> <?php echo $notice_writer_name; ?></p>
             <div id="empty">
             </div>
          </div>
