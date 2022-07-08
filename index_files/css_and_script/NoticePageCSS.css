@@ -387,6 +387,160 @@ nav a {
   height: auto;
   cursor: pointer;
 }
+.old_notices a
+{
+   color:#fff;
+}
+.comment_section
+{
+ width: 50.4rem;
+ height: 350px;
+ border: 3px solid #fff;
+ box-sizing: border-box;
+ padding: 10px;
+ overflow-y: auto;
+}
+
+.comment_form
+{
+display: flex;
+justify-content: center;
+ align-items: center;
+ flex-direction: column;
+}
+
+#comment_box
+{
+   outline: none;
+background-color: transparent;
+border-image-slice: 34 34 38 34;
+border-image-width: 15px 15px 15px 15px;
+border-image-outset: 3px 3px 3px 3px;
+border-image-repeat: stretch stretch;
+border-image-source: url("./index_files/image/input_frame.png");
+border-style: solid;
+color: #fff;
+font-family: 'Fredericka the Great';
+font-size: 1.2rem;
+resize: none;
+cursor: pointer;
+width: 50.1rem;
+ height: 100px;
+padding: 10px;
+box-sizing: border-box;
+
+}
+
+/* saved */
+.admin_saved_notices, .student_saved_notices
+{
+  display: block;
+  width: calc(100vw - 26px);
+  height: calc(100vh - 42.5px);
+  box-sizing: border-box;
+  display: flex;
+  overflow-y: auto;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+#comment_submit_btn
+{
+   margin-top:20px;
+}
+.comment_section section
+{
+border-bottom: 1px dashed #fff;
+margin-bottom: 10px;
+}
+/*Scroll bar of */
+/* width */
+.notice_container::-webkit-scrollbar {
+  width: 15px;
+  z-index: 100;
+}
+
+/* Track */
+.notice_container::-webkit-scrollbar-track {
+  /* background: #7e4f44; */
+  box-shadow: inset 0 0 6px rgb(0 0 0 / 30%);
+  -webkit-box-shadow: inset 0 0 6px rgb(0 0 0 / 30%);
+  border-radius: 10px;
+  z-index: 100;
+}
+
+/* Handle */
+.notice_container::-webkit-scrollbar-thumb {
+  box-shadow: inset 0 0 6px rgb(0 0 0 / 30%);
+  -webkit-box-shadow: inset 0 0 6px rgb(0 0 0 / 30%);
+  background-color: #853521;
+  border-radius: 10px;
+  z-index: 100;
+}
+/*Scroll bar of comment section*/
+
+/* width */
+.comment_section::-webkit-scrollbar {
+width: 10px;
+}
+
+/* Track */
+.comment_section::-webkit-scrollbar-track {
+background: #f1f1f1; 
+border-radius: unset;
+box-shadow: unset;
+-webkit-box-shadow: unset;
+
+}
+
+/* Handle */
+.comment_section::-webkit-scrollbar-thumb {
+background: #fff;
+border-radius: unset;
+box-shadow: unset;
+-webkit-box-shadow: unset;
+
+}
+.comment_section::-webkit-scrollbar-thumb:hover {
+background: rgb(255, 223, 223);
+border-radius: unset;
+box-shadow: unset;
+-webkit-box-shadow: unset;
+
+}
+
+/*Scroll bar of comment_box*/
+
+/* width */
+#comment_box::-webkit-scrollbar {
+width: 8px;
+}
+
+/* Track */
+#comment_box::-webkit-scrollbar-track {
+background: #f1f1f1; 
+border-radius: unset;
+box-shadow: unset;
+-webkit-box-shadow: unset;
+
+}
+
+/* Handle */
+#comment_box::-webkit-scrollbar-thumb {
+background: #fff;
+border-radius: unset;
+box-shadow: unset;
+-webkit-box-shadow: unset;
+
+}
+#comment_box::-webkit-scrollbar-thumb:hover {
+background: rgb(255, 223, 223);
+border-radius: unset;
+box-shadow: unset;
+-webkit-box-shadow: unset;
+
+}
+
 
 @media screen and (max-width: 1200px) {
 

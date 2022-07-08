@@ -1,26 +1,26 @@
 <?php
 include 'connection.php';
 session_start();
-if(!isset($_SESSION['logged_in']))
+if(!isset($_SESSION['AdminLoginId']))
 {
-    header("location: ./index_files/Admin Login.php");
+    header("location: ../../index.php");
 }
-if(isset($_POST['Del_word']))
+if(isset($_GET['del_submit']))
 {
-$word_id = $_POST['rmv_word_id'];
-echo $word_id;
-$query = "SELECT * FROM products where id = '$word_id'";
+$notice_id = $_GET['notice_id'];
+$previews_page_url =  $_GET['previews_page_url'];
+$query = "SELECT * FROM notice where `notice_id` = '$notice_id'";
 $result = mysqli_query($con,$query);
     if($result)
     {
         if(mysqli_num_rows($result)==1)
         {
-            $deletequery = "DELETE FROM `products` WHERE id = '$word_id'";
+            $deletequery = "DELETE FROM `notice` WHERE `notice_id`= '$notice_id'";
             $query = mysqli_query($con, $deletequery);
             echo"
             <script>
-            alert('Word has been removed');
-            window.location.href='../index.php';
+            alert('Notcie has been removed');
+            window.location.href='$previews_page_url';
             </script>
             "; 
         }
@@ -28,8 +28,8 @@ $result = mysqli_query($con,$query);
         {
             echo"
             <script>
-            alert('Sorry! Word can't be deleted due to some error.);
-             window.location.href='../index.php';
+            alert('Sorry! Notice can't be deleted due to some error.);
+            window.location.href='$previews_page_url';
             </script>
             ";  
         }
@@ -38,8 +38,8 @@ $result = mysqli_query($con,$query);
     {
         echo"
         <script>
-        alert('Word not found');
-            window.location.href='../index.php';
+        alert('Notice not found');
+        window.location.href='$previews_page_url';
         </script>
         "; 
     }   
@@ -50,7 +50,7 @@ else
         echo"
         <script>
         alert('Click the delete button first');
-            window.location.href='../index.php';
+        window.location.href='$previews_page_url';
         </script>
         "; 
     }

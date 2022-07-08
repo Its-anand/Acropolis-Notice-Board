@@ -1,4 +1,12 @@
 <!DOCTYPE html>
+<?php
+include 'connection.php';
+session_start();
+if(!isset($_SESSION['AdminLoginId']))
+{
+    header("location: ../../index.php");
+}
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,11 +17,11 @@
 
     <title>Update Word</title>
     <style>
-        body
-        {
-            padding: 0;
-            margin: 0;
-            background-color: #065F04;
+    body
+     {
+      padding: 0;
+      margin: 0;
+      background-color: #065F04;
       font-family: 'Fredericka the Great';
       color: #fff;
       overflow: hidden;
@@ -155,6 +163,7 @@
     height: 50px;
     display: flex;
     align-items: center;
+    text-decoration: none;
     justify-content: center;
 }
 
@@ -172,7 +181,7 @@
     </style>
 </head>
 <?php
-include 'connection.php';
+
 if(isset($_GET['edit_submit']))
 {
     $notice_id = $_GET['notice_id'];
@@ -189,13 +198,14 @@ if(isset($_GET['edit_submit']))
 <?php
   if(isset($_POST['notice_submit']))
   {
-    $updatequery ="UPDATE `notice` SET `notice_date`='$_POST[notice_date]',`notice_title`='$_POST[notice_title]',`notice_body`='$_POST[notice_body]',`notice_writer_role`='$_POST[notice_writer_role]',`notice_writer_name`='$_POST[notice_writer_name]' WHERE notice_id = $notice_id";
+    $updatequery ="UPDATE `notice` SET `notice_date`='$_POST[notice_date]',`notice_title`='$_POST[notice_title]',`notice_body`='$_POST[notice_body]',`notice_writer_role`='$_POST[notice_writer_role]',`notice_writer_name`='$_POST[notice_writer_name]' WHERE notice_id = '$notice_id'";
     $result = mysqli_query($con, $updatequery);
     if($result)
     {
       echo"
       <script>
       alert('Updated');
+      window.location.href='$previews_page_url';
       </script>
       ";     }
     else
@@ -203,6 +213,7 @@ if(isset($_GET['edit_submit']))
       echo"
       <script>
       alert('Failed');
+      window.location.href='$previews_page_url';
       </script>
       ";     }
   }
@@ -224,7 +235,7 @@ if(isset($_GET['edit_submit']))
               class="button_css notice_writer_input_css" ></li>
           <li><input type="submit" name="notice_submit" class="notice_submit" value="Submit"></li>
           <div class="go_back_holder" style="width:100%;">
-            <a style="text-align: center;" id="go_back_btn" class="button_css edit_notice_go_back">Go Back</a>
+            <a style="text-align: center;" id="go_back_btn" href='<?php echo $previews_page_url;?>' class="button_css ">Go Back</a>
           </div>
         </ul>
       </form>
@@ -237,12 +248,15 @@ if(isset($_GET['edit_submit']))
     $result = mysqli_query($con, $insertquery);
     if($result)
     {
-      echo "Updated";
-      window.location.href = '$previews_page_url';
+      echo "Updated
+      window.location.href='$previews_page_url';
+      ";
     }
     else
     {
-      echo "Failed";
+      echo "Failed
+      window.location.href='$previews_page_url';
+      ";
     }
   }
   ?> 
@@ -252,7 +266,8 @@ else
     {
         echo"
         <script>
-        alert('Click the Edit button first');
+        alert('Click the submit button first');
+        window.location.href='$previews_page_url';
         </script>
         "; 
     }
