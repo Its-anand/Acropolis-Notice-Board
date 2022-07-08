@@ -4,6 +4,25 @@
 include('./index_files/Data/connection.php');
 session_start();
 
+//Important variables
+$notice_id =$_GET['id'];
+if(isset($_SESSION['StudentLoginId']) && $_SESSION['StudentLoginId']==true)
+{
+   $userId = $_SESSION['userid'];
+}
+
+//Copy current page url in a variable
+if(isset($_SERVER['HTTPS']) && $_SERVER['HTTP'] === 'on')
+ {
+   $current_page_url = 'https://';
+ }
+ else
+ {
+   $current_page_url = 'http://';
+ }
+ $current_page_url.= $_SERVER['HTTP_HOST'];
+ $current_page_url.= $_SERVER['REQUEST_URI'];
+//  echo $current_page_url;
 ?>
 
 <head>
@@ -77,9 +96,161 @@ else
 }
 ?>
 
+<style>
+   .comment_section
+   {
+    width: 50.4rem;
+    height: 350px;
+    border: 3px solid #fff;
+    box-sizing: border-box;
+    padding: 10px;
+    overflow-y: auto;
+   }
+
+.comment_form
+{
+   display: flex;
+   justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+   #comment_box
+   {
+      outline: none;
+  background-color: transparent;
+  border-image-slice: 34 34 38 34;
+  border-image-width: 15px 15px 15px 15px;
+  border-image-outset: 3px 3px 3px 3px;
+  border-image-repeat: stretch stretch;
+  border-image-source: url("./index_files/image/input_frame.png");
+  border-style: solid;
+  color: #fff;
+  font-family: 'Fredericka the Great';
+  font-size: 1.2rem;
+  resize: none;
+  cursor: pointer;
+  width: 50.1rem;
+    height: 100px;
+   padding: 10px;
+   box-sizing: border-box;
+
+   }
+   #comment_submit_btn
+   {
+      margin-top:20px;
+   }
+.comment_section section
+{
+   border-bottom: 1px dashed #fff;
+   margin-bottom: 10px;
+}
+
+/*Scroll bar of comment section*/
+
+/* width */
+.comment_section::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+.comment_section::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+  border-radius: unset;
+  box-shadow: unset;
+  -webkit-box-shadow: unset;
+
+}
+
+/* Handle */
+.comment_section::-webkit-scrollbar-thumb {
+  background: #fff;
+  border-radius: unset;
+  box-shadow: unset;
+  -webkit-box-shadow: unset;
+
+}
+.comment_section::-webkit-scrollbar-thumb:hover {
+  background: rgb(255, 223, 223);
+  border-radius: unset;
+  box-shadow: unset;
+  -webkit-box-shadow: unset;
+
+}
+
+/*Scroll bar of comment_box*/
+
+/* width */
+#comment_box::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+#comment_box::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+  border-radius: unset;
+  box-shadow: unset;
+  -webkit-box-shadow: unset;
+
+}
+
+/* Handle */
+#comment_box::-webkit-scrollbar-thumb {
+  background: #fff;
+  border-radius: unset;
+  box-shadow: unset;
+  -webkit-box-shadow: unset;
+
+}
+#comment_box::-webkit-scrollbar-thumb:hover {
+  background: rgb(255, 223, 223);
+  border-radius: unset;
+  box-shadow: unset;
+  -webkit-box-shadow: unset;
+
+}
+
+</style>
+
    <nav id="comment_system" class="tab ">
       <ul>
-         <li class="text">Comment</li>
+
+     <div class='comment_section'>
+         <?php
+               $likeQuery = "SELECT * FROM `comments` WHERE notice_id = '$notice_id' AND user_id = '$userId' ";
+               $likeResult = mysqli_query($con,$likeQuery);
+               if($likeResult)
+               {
+                 if(mysqli_num_rows($likeResult)<1)
+                 {
+                  echo "No comments";
+                 } 
+                 else
+                 {
+                  while($res = mysqli_fetch_array($likeResult))
+                  {
+                  ?>
+
+                  <section>
+                      <h3 style="margin: 0px 0 0 1px;"><?php echo $res['user_id']; ?></h3> 
+                    <p style='margin: 4px 0px 10px 0px;'><?php echo $res['comment']; ?></p>  
+                  </section>
+
+                  <?php
+                  }
+                 }
+               }
+         ?>
+     </div>
+
+     <li><form class='comment_form' action="./index_files/Data/comment.php" method="post">
+      <input type="hidden" name="notice_id" value='<?php echo $notice_id ;?>'>
+      <input type="hidden" name="notice_url" value='<?php echo $current_page_url ;?>'>
+               <textarea name="comment_message" placeholder='Comment Here' id="comment_box"  cols="30" rows="10"></textarea>
+               <button class='notice_submit' id='comment_submit_btn' name='comment_submit' type="submit">Submit</button>
+         </form>
+      </li>
+         
          <a id="go_back_btn" class="button_css comment_panel_btn">Go Back</a>
       </ul>
    </nav>
@@ -235,11 +406,10 @@ else
             <?php
             if(isset($_GET['id']))
             {
-               $id = $_GET['id'];
-               $query = "SELECT * FROM `notice` WHERE  `notice_id`= '$id'";
+               $notice_id = $_GET['id'];
+               $query = "SELECT * FROM `notice` WHERE  `notice_id`= '$notice_id'";
                $result = mysqli_query($con,$query);
                $result_fetch=mysqli_fetch_assoc($result);
-               $notice_id=$result_fetch['notice_id'];
                $notice_date=$result_fetch['notice_date'];
                $notice_title=$result_fetch['notice_title'];
                $notice_body=$result_fetch['notice_body'];
@@ -258,16 +428,56 @@ else
             </div>
          </div>
       </div>
+
+
+
       <div id='botton_container'>
-         <img title='Like' class="button_style" src="./index_files/image/like.jpg" width="50px" alt="">
-         <img title='Comment' class="button_style comment_btn" src="./index_files/image/comment.jpg" alt="">
-         <img title='Save' class="button_style" src="./index_files/image/Save.jpg" alt="">
-         <input type="text" style="display: none;" value="http://127.0.0.1:5500/College%20Project/sem7/index.html"
-            id="myInput">
-         <img title='Share' onclick="getURL();" class="button_style" src="./index_files/image/share.jpg" alt="">
-         <img title='setting' class="button_style setting" src="./index_files/image/setting.jpg" alt="">
+      <form action='./index_files/Data/like.php' method='post' class='navigation_panel_form'>
+        <input type='hidden' name='notice_id' value='<?php echo $notice_id;?>'>
+        <input type="hidden" name="notice_url" value='<?php echo $current_page_url;?>'>
+        <button type='submit' name='like_submit' class='navigation_panel_button_css'>
+        <img title='Like' class='button_style' src='./index_files/image/like.jpg' width='50px' alt=''>
+        </button>
+      </form>
+
+
+      <?php
+if(isset($_SESSION['StudentLoginId']) && $_SESSION['StudentLoginId']==true)
+{
+  echo"
+  <img title='Comment' class='button_style comment_btn' src='./index_files/image/comment.jpg' alt=''>
+  ";
+}
+else
+{
+  echo"
+  <button onclick='signInAleart()' class='navigation_panel_button_css'>
+  <img title='Comment' class='button_style' src='./index_files/image/comment.jpg' alt=''>
+  </button>
+  <script>
+  function signInAleart()
+  {
+    alert('Please sign in first');
+  }
+  </script>
+  ";
+}
+?>
+
+<form action='./index_files/Data/save.php' method='post' class='navigation_panel_form'>
+  <input type='hidden' name='notice_id' value='<?php echo $notice_id;?>'>
+  <input type='hidden' name='notice_url' value='<?php echo $current_page_url;?>'>
+  <button type='submit' name='save' class='navigation_panel_button_css'>
+  <img title='Save' class='button_style' src='./index_files/image/Save.jpg' alt=''>
+  </button>
+</form>
+
+   <img title='Share' onclick="getURL();" class="button_style" src="./index_files/image/share.jpg" alt="">
+   <img title='setting' class="button_style setting" src="./index_files/image/setting.jpg" alt="">
       </div>
    </div>
+
+
 
    <script>
       //setting

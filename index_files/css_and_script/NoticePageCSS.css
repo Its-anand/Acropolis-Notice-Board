@@ -37,7 +37,7 @@ body {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #7e4f44;
+  /* background: #7e4f44; */
   box-shadow: inset 0 0 6px rgb(0 0 0 / 30%);
   -webkit-box-shadow: inset 0 0 6px rgb(0 0 0 / 30%);
   border-radius: 10px;
@@ -53,8 +53,8 @@ body {
   z-index: 100;
 }
 
-input::placeholder, .notice_body_input_css::placeholder
-{
+input::placeholder,
+.notice_body_input_css::placeholder {
   font-size: 1rem;
   color: rgba(229, 227, 227, 0.737);
 }
@@ -94,6 +94,18 @@ input::placeholder, .notice_body_input_css::placeholder
   cursor: pointer;
 }
 
+
+
+.navigation_panel_button_css {
+  padding: 0px;
+  border: 0px;
+  outline: none;
+  margin: 0px;
+  background: transparent;
+}
+
+
+
 .textarea_css {
   outline: none;
   background-color: transparent;
@@ -125,60 +137,62 @@ input::placeholder, .notice_body_input_css::placeholder
   height: 30px;
 
 }
-#create_notice
-{
+
+#create_notice {
   width: calc(100vw - 26px);
   height: calc(100vh - 45px);
   padding: 0 15rem;
   box-sizing: border-box;
-  overflow-y: auto;;
+  overflow-y: auto;
+  ;
 }
-.notice_head
-{
+
+.notice_head {
   text-align: center;
   margin-top: 2rem;
 }
-.go_back_holder
-{
+
+.go_back_holder {
   width: 100%;
   display: flex;
   justify-content: center;
 }
-.notice_heading_input_css
-{
+
+.notice_heading_input_css {
   height: 2rem;
   width: 100%;
   padding: 0 10px;
 }
-.notice_writer_input_css
-{
+
+.notice_writer_input_css {
   height: 2rem;
   width: 250px;
   padding: 0 10px;
 }
-.notice_body_input_css
-{
+
+.notice_body_input_css {
   height: 23rem;
   width: 100%;
   padding: 10px;
 }
-.notice_submit
-{
-    outline: none;
-    background-color: transparent;
-    border-image-slice: 34 34 38 34;
-    border-image-width: 15px 15px 15px 15px;
-    border-image-outset: 3px 3px 3px 3px;
-    border-image-repeat: stretch stretch;
-    border-image-source: url(../image/button_frame1.png);
-    border-style: solid;
-    color: #fff;
-    font-family: 'Fredericka the Great';
-    font-size: 1.2rem;
-    width: 139px;
-    height: 38px;
-    cursor: pointer;
+
+.notice_submit {
+  outline: none;
+  background-color: transparent;
+  border-image-slice: 34 34 38 34;
+  border-image-width: 15px 15px 15px 15px;
+  border-image-outset: 3px 3px 3px 3px;
+  border-image-repeat: stretch stretch;
+  border-image-source: url(../image/button_frame1.png);
+  border-style: solid;
+  color: #fff;
+  font-family: 'Fredericka the Great';
+  font-size: 1.2rem;
+  width: 139px;
+  height: 38px;
+  cursor: pointer;
 }
+
 .contactus_text_css {
   width: 300px;
   height: 40px;
@@ -205,11 +219,12 @@ nav ul {
   margin: 0px;
   padding: 0px;
 }
-#create_notice ul
-{
+
+#create_notice ul {
   display: block;
   width: 100%;
 }
+
 /* width */
 #create_notice::-webkit-scrollbar {
   width: 15px;
@@ -230,11 +245,12 @@ nav ul {
   background-color: #853521;
   border-radius: 10px;
 }
-#create_notice li
-{
+
+#create_notice li {
   width: 100%;
 
 }
+
 nav li {
   color: #fff;
   list-style: none;
@@ -291,8 +307,7 @@ nav a {
   margin-top: 2rem;
 }
 
-.notice_nav_setting
-{
+.notice_nav_setting {
   border: 3px solid #fff;
   width: 31.25rem;
   height: 3rem;
@@ -303,17 +318,19 @@ nav a {
   justify-items: end;
 }
 
-#word_no_holder, #edit_del_holder {
+#word_no_holder,
+#edit_del_holder {
   display: flex;
   justify-content: flex-end;
 }
+
 #word_no {
   margin: 7px 0;
   font-weight: bold;
   font-size: 1.6rem;
 }
-.notice_head
-{
+
+.notice_head {
   font-size: 2.5rem;
   margin-bottom: 5rem;
 }
@@ -324,14 +341,15 @@ nav a {
   box-sizing: border-box;
   background: transparent;
 }
-.notice_iframe
-{
+
+.notice_iframe {
   border: 3px solid #fff;
   width: 31.25rem;
   height: 18.75rem;
   box-sizing: border-box;
   padding: 10px;
 }
+
 #empty {
   background-color: #065F04;
   width: 100%;
@@ -359,6 +377,9 @@ nav a {
   border-image-repeat: stretch stretch;
   border-image-source: url("../image/border.png");
   border-style: solid;
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  justify-content: space-between;
 }
 
 .button_style {
@@ -368,18 +389,24 @@ nav a {
 }
 
 @media screen and (max-width: 1200px) {
-  .notice_container, #create_notice {
+
+  .notice_container,
+  #create_notice {
     padding: 0 5rem;
   }
-  
+
 }
 
 @media screen and (max-width: 800px) {
-  .notice_container, #create_notice{
+
+  .notice_container,
+  #create_notice {
     padding: 0 2rem 0 10px;
   }
-  .input_text_css,.notice_writer_input_css  {
-    width: 100%;  
+
+  .input_text_css,
+  .notice_writer_input_css {
+    width: 100%;
   }
 
 }

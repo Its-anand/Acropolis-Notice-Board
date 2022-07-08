@@ -30,7 +30,7 @@ if(isset($_POST['notice_submit']))
         echo"
         <script>
         alert('Uploaded Successfully');
-        window.location.href='../../index.php';
+        window.location.href='../../NoticePage.php';
         </script>
         ";
     }
@@ -39,7 +39,7 @@ if(isset($_POST['notice_submit']))
         echo"
         <script>
         alert('Upload Failed');
-        window.location.href='../../index.php';
+        window.location.href='../../NoticePage.php';
         </script>
         ";
     }

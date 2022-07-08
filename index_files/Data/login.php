@@ -20,15 +20,15 @@ if(isset($_POST['submit']))
         if(mysqli_num_rows($result)==1)
         {
             session_start();
-            $_SESSION['AdminLoginId']=true;
-            header("location: ../../index.php");
+            $_SESSION['AdminLoginId'] = true;
+            header("location: ../../NoticePage.php");
         }
         else
         {
         echo"
             <script>
                 alert('Looks like you are not admin');
-                window.location.href='../../index.php';
+                window.location.href='../../NoticePage.php';
                 </script>
         ";
         }
@@ -47,15 +47,16 @@ if(isset($_POST['slogin']))
         {
             session_start();
             $_SESSION['StudentLoginId']=true;
-            header("location: ../../index.php");
+            $_SESSION['userid'] = $_POST['stu_name'];
+            header("location: ../../NoticePage.php");
         }
         else
         {
         echo"
             <script>
                 alert('Email or Password is wrong');
-                window.location.href='../../index.php';
-                </script>
+                window.location.href='../../NoticePage.php';
+            </script>
         ";
         }
 
