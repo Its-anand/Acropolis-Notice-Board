@@ -101,17 +101,17 @@ else
 
          <div class='comment_section'>
             <?php
-               $likeQuery = "SELECT * FROM `comments` WHERE notice_id = '$notice_id' AND user_id = '$userId' ";
-               $likeResult = mysqli_query($con,$likeQuery);
-               if($likeResult)
+               $commentQuery = "SELECT * FROM `comments` WHERE notice_id = '$notice_id' AND user_id = '$userId' ";
+               $commentResult = mysqli_query($con,$commentQuery);
+               if($commentResult)
                {
-                 if(mysqli_num_rows($likeResult)<1)
+                 if(mysqli_num_rows($commentResult)<1)
                  {
                   echo "No comments";
                  } 
                  else
                  {
-                  while($res = mysqli_fetch_array($likeResult))
+                  while($res = mysqli_fetch_array($commentResult))
                   {
                   ?>
 
@@ -242,59 +242,34 @@ else
 }
 ?>
    <nav id="admin_saved_notices" class="tab ">
-   <p class="text_saved">A Saved notice</p>
-
-   <ul>
+      <p class="text_saved">A Saved notice</p>
+      <ul>
          <?php
-            $selectquery = "select * from saved ";
-   
+            $adminId = $_SESSION['admin_name'];
+            $selectquery = "SELECT * FROM `saved` WHERE 	user_id = '$adminId'  ";
             $query = mysqli_query($con,$selectquery);
-            while($res = mysqli_fetch_array($query))
-            {
-        ?>
+            while($ress = mysqli_fetch_array($query))
+                  {  
+               $select_notice_query = "SELECT * FROM `notice` WHERE notice_id ='$ress[notice_id]' ";
+               $notice_query = mysqli_query($con,$select_notice_query);
+               $res = mysqli_fetch_array($notice_query);
+           ?>
+
          <div class='notice_body'>
             <div>
                <div class='notice_nav_setting'>
                   <div id="word_no_holder">
-                     <p id="word_no"><?php echo $res['notice_id']; ?></p>
+                     <p id="word_no"><?php echo $ress['notice_id']; ?></p>
                   </div>
                   <?php
           if(isset($_SESSION['AdminLoginId']) && $_SESSION['AdminLoginId']==true)
             {
             ?>
                   <div id="edit_del_holder">
-                     <form action="./index_files/Data/edit_notice.php" method="get">
+                     <form action="./index_files/Data/remove_saved_notice.php" method="get">
                         <input type="hidden" name="notice_id" value='<?php echo $res['notice_id']; ?>'>
                         <input type="hidden" name="previews_page_url" value='<?php echo $current_page_url; ?>'>
-                        <button type='submit' name='edit_submit' class="edit_del_btn">
-                           <svg xmlns="http://www.w3.org/2000/svg" class="edit" fill="#fff" style="cursor:pointer;"
-                              version="1.0" width="17.000000pt" height="17.000000pt" viewBox="0 0 512.000000 512.000000"
-                              preserveAspectRatio="xMidYMid meet">
-                              <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="#ffffff"
-                                 stroke="none">
-                                 <path
-                                    d="M875 5101 c-314 -79 -538 -317 -601 -639 -21 -110 -21 -3694 0 -3804 55 -280 230 -496 486 -601 131 -54 161 -57 613 -57 391 0 420 1 455 19 47 24 77 56 97 103 40 98 -1 210 -97 259 -34 18 -63 19 -385 19 -191 1 -378 5 -415 9 -175 23 -316 152 -348 320 -14 74 -14 3588 0 3662 32 168 173 297 348 320 88 11 2446 11 2534 0 175 -23 316 -152 348 -320 6 -33 10 -305 10 -700 l0 -647 23 -44 c12 -24 39 -57 60 -74 32 -26 49 -31 106 -34 100 -6 170 35 206 120 22 54 23 1336 1 1450 -65 329 -295 569 -614 642 -63 14 -214 16 -1414 15 -1246 0 -1348 -2 -1413 -18z">
-                                 </path>
-                                 <path
-                                    d="M1175 3904 c-138 -71 -154 -251 -32 -348 l39 -31 1099 -3 c1066 -2 1100 -2 1137 17 150 77 150 285 0 362 -36 18 -75 19 -1125 19 -966 0 -1091 -2 -1118 -16z">
-                                 </path>
-                                 <path
-                                    d="M1175 3104 c-138 -71 -154 -251 -32 -348 l39 -31 1099 -3 c1066 -2 1100 -2 1137 17 150 77 150 285 0 362 -36 18 -75 19 -1125 19 -966 0 -1091 -2 -1118 -16z">
-                                 </path>
-                                 <path
-                                    d="M4101 2385 c-80 -23 -136 -50 -205 -99 -33 -24 -318 -302 -633 -618 l-571 -573 -36 -115 c-212 -691 -219 -715 -220 -782 -1 -59 3 -71 29 -110 17 -23 49 -53 70 -65 71 -40 111 -34 562 91 226 63 426 122 445 131 18 9 297 281 619 603 583 583 587 588 628 672 92 189 93 371 2 555 -66 134 -192 245 -334 295 -82 29 -275 37 -356 15z m226 -406 c64 -24 123 -109 123 -179 0 -45 -30 -108 -67 -142 l-29 -28 -134 135 -134 134 29 32 c17 17 44 37 60 45 36 16 113 18 152 3z m-630 -1006 l-367 -368 -192 -53 c-105 -29 -192 -51 -193 -50 -2 2 23 87 54 191 l56 187 368 367 368 367 137 -137 137 -137 -368 -367z">
-                                 </path>
-                                 <path
-                                    d="M1175 2304 c-138 -72 -154 -251 -32 -348 l39 -31 708 0 708 0 39 31 c109 87 109 241 0 328 l-39 31 -696 3 c-618 2 -700 0 -727 -14z">
-                                 </path>
-                              </g>
-                           </svg>
-                        </button>
-                     </form>
-                     <form action="./index_files/Data/remove_notice.php" method="get">
-                        <input type="hidden" name="notice_id" value='<?php echo $res['notice_id']; ?>'>
-                        <input type="hidden" name="previews_page_url" value='<?php echo $current_page_url; ?>'>
-                        <button type='submit' name='del_submit' class="edit_del_btn">
+                        <button type='submit' name='del_saved_submit' class="edit_del_btn">
                            <svg xmlns="http://www.w3.org/2000/svg" class="cancel" fill="#fff" viewBox="0 0 30 30"
                               width="30px" style="cursor:pointer;" height="30px">
                               <path
@@ -325,35 +300,40 @@ else
             }
         ?>
       </ul>
-     <div class='go_back_holder'> <a id="go_back_btn" class="button_css student_saved_notices_go_back">Go Back</a></div>
+      <div class='go_back_holder'> <a id="go_back_btn" class="button_css admin_saved_notices_go_back">Go Back</a>
+      </div>
 
    </nav>
 
    <nav id="student_saved_notices" class="tab ">
-   <p class="text_saved">s Saved notice</p>
+      <p class="text_saved">s Saved notice</p>
 
       <ul>
          <?php
-            $selectquery = "select * from saved";
+            $selectquery = "SELECT * FROM `saved` WHERE 	user_id = '$userId'  ";
             $query = mysqli_query($con,$selectquery);
-            while($res = mysqli_fetch_array($query))
-            {
-        ?>
+            while($ress = mysqli_fetch_array($query))
+                  {  
+               $select_notice_query = "SELECT * FROM `notice` WHERE notice_id ='$ress[notice_id]' ";
+               $notice_query = mysqli_query($con,$select_notice_query);
+               $res = mysqli_fetch_array($notice_query);
+           ?>
+
          <div class='notice_body'>
-            <div >
+            <div>
                <div class='notice_nav_setting'>
                   <div id="word_no_holder">
-                     <p id="word_no"><?php echo $res['notice_id']; ?></p>
+                     <p id="word_no"><?php echo $ress['notice_id']; ?></p>
                   </div>
                   <?php
           if(isset($_SESSION['StudentLoginId']) && $_SESSION['StudentLoginId']==true)
             {
             ?>
                   <div id="edit_del_holder">
-                     <form action="./index_files/Data/remove_notice.php" method="get">
+                     <form action="./index_files/Data/remove_saved_notice.php" method="get">
                         <input type="hidden" name="notice_id" value='<?php echo $res['notice_id']; ?>'>
                         <input type="hidden" name="previews_page_url" value='<?php echo $current_page_url; ?>'>
-                        <button type='submit' name='del_submit' class="edit_del_btn">
+                        <button type='submit' name='del_saved_submit' class="edit_del_btn">
                            <svg xmlns="http://www.w3.org/2000/svg" class="cancel" fill="#fff" viewBox="0 0 30 30"
                               width="30px" style="cursor:pointer;" height="30px">
                               <path
@@ -384,8 +364,8 @@ else
             }
         ?>
       </ul>
-     <div class='go_back_holder'> <a id="go_back_btn" class="button_css student_saved_notices_go_back">Go Back</a></div>
-
+      <div class='go_back_holder'> <a id="go_back_btn" class="button_css student_saved_notices_go_back">Go Back</a>
+      </div>
    </nav>
 
    <nav id="old_ntc" class="tab ">
@@ -451,14 +431,46 @@ else
 
 
       <div id='botton_container'>
-         <form action='./index_files/Data/like.php' method='post' class='navigation_panel_form'>
+
+         <?php
+if(isset($_SESSION['StudentLoginId']) && $_SESSION['StudentLoginId']==true)
+{
+  echo"
+  <form action='./index_files/Data/like.php' method='post' class='navigation_panel_form'>
+  <input type='hidden' name='notice_id' value='<?php echo $notice_id;?>'>
+         <input type='hidden' name='notice_url' value='$current_page_url'>
+         <button type='submit' name='like_submit' class='navigation_panel_button_css'>
+            <img title='Like' class='button_style' src='./index_files/image/like.jpg' width='50px' alt=''>
+         </button>
+         </form> ";
+         }
+         else if(isset($_SESSION['AdminLoginId']) && $_SESSION['AdminLoginId']==true)
+         {
+         echo"
+         <form action='./index_files/Data/like_admin.php' method='post' class='navigation_panel_form'>
             <input type='hidden' name='notice_id' value='<?php echo $notice_id;?>'>
-            <input type="hidden" name="notice_url" value='<?php echo $current_page_url;?>'>
-            <button type='submit' name='like_submit' class='navigation_panel_button_css'>
+            <input type='hidden' name='notice_url' value='$current_page_url'>
+            <button type='submit' name='admin_like_submit' class='navigation_panel_button_css'>
                <img title='Like' class='button_style' src='./index_files/image/like.jpg' width='50px' alt=''>
             </button>
          </form>
+         ";
+         }
+         else
+         {
 
+         echo"
+         <button onclick='signInAleart()' class='navigation_panel_button_css'>
+            <img title='Like' class='button_style' src='./index_files/image/like.jpg' width='50px' alt=''>
+         </button>
+         <script>
+            function signInAleart() {
+               alert('Please sign in first');
+            }
+         </script>
+         ";
+         }
+         ?>
 
          <?php
 if(isset($_SESSION['StudentLoginId']) && $_SESSION['StudentLoginId']==true)
@@ -482,14 +494,49 @@ else
   ";
 }
 ?>
+         <?php
+if(isset($_SESSION['StudentLoginId']) && $_SESSION['StudentLoginId']==true)
+{
+  echo"
+  <form action='./index_files/Data/save.php' method='post' class='navigation_panel_form'>
+  <input type='hidden' name='notice_id' value='$notice_id'>
+  <input type='hidden' name='notice_url' value='$current_page_url'>
+  <button type='submit' name='save' class='navigation_panel_button_css'>
+     <img title='Save' class='button_style' src='./index_files/image/Save.jpg' alt=''>
+  </button>
+</form>
+";
+}
+else if(isset($_SESSION['AdminLoginId']) && $_SESSION['AdminLoginId']==true)
+{
+  echo"
+  <form action='./index_files/Data/admin_save.php' method='post' class='navigation_panel_form'>
+  <input type='hidden' name='notice_id' value='$notice_id'>
+  <input type='hidden' name='notice_url' value='$current_page_url'>
+  <button type='submit' name='save' class='navigation_panel_button_css'>
+     <img title='Save' class='button_style' src='./index_files/image/Save.jpg' alt=''>
+  </button>
+</form>
+  ";
+}
+else
+{
 
-         <form action='./index_files/Data/save.php' method='post' class='navigation_panel_form'>
-            <input type='hidden' name='notice_id' value='<?php echo $notice_id;?>'>
-            <input type='hidden' name='notice_url' value='<?php echo $current_page_url;?>'>
-            <button type='submit' name='save' class='navigation_panel_button_css'>
-               <img title='Save' class='button_style' src='./index_files/image/Save.jpg' alt=''>
-            </button>
-         </form>
+   echo"
+   <button onclick='signInAleart()' class='navigation_panel_button_css'>
+   <img title='Save' class='button_style' src='./index_files/image/Save.jpg' alt=''>
+   </button>
+   <script>
+   function signInAleart()
+   {
+     alert('Please sign in first');
+   }
+   </script>
+   ";
+}
+?>
+
+
 
          <img title='Share' onclick="getURL();" class="button_style" src="./index_files/image/share.jpg" alt="">
          <img title='setting' class="button_style setting" src="./index_files/image/setting.jpg" alt="">
@@ -569,6 +616,8 @@ else
 
          $(".admin_saved_notices_btn").click(function () {
             $("#admin_saved_notices").toggle();
+            $(".notice_container").toggle();
+
          });
       });
       //Admin Saved notice go back
@@ -576,6 +625,8 @@ else
 
          $(".admin_saved_notices_go_back").click(function () {
             $("#admin_saved_notices").toggle();
+            $(".notice_container").toggle();
+
          });
       })
       //Student Saved notice
@@ -583,6 +634,8 @@ else
 
          $(".student_saved_notices_btn").click(function () {
             $("#student_saved_notices").toggle();
+            $(".notice_container").toggle();
+
          });
       });
       //Student Saved notice go back
@@ -590,6 +643,8 @@ else
 
          $(".student_saved_notices_go_back").click(function () {
             $("#student_saved_notices").toggle();
+            $(".notice_container").toggle();
+
          });
       })
       //About

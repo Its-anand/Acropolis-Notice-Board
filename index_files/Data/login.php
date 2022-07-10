@@ -21,6 +21,8 @@ if(isset($_POST['submit']))
         {
             session_start();
             $_SESSION['AdminLoginId'] = true;
+            $_SESSION['admin_name'] = $_POST['admin_name'];
+
             header("location: ../../NoticePage.php");
         }
         else
