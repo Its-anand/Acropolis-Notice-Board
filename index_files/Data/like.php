@@ -50,6 +50,7 @@ session_start();
         echo"
         <script>
         alert('Please Sign in first');
+        window.location.href='$notice_url';
         </script>
         ";
       }

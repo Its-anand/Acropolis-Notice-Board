@@ -14,7 +14,7 @@ require('connection.php');
 if(isset($_POST['submit']))
 {
     $query = "SELECT * FROM `admin_login` WHERE  `admin_name`= '$_POST[admin_name]' AND `admin_password`='$_POST[admin_password]'";
-
+    $previous_page_url =  $_POST['previous_page_url'];
     $result = mysqli_query($con,$query);
 
         if(mysqli_num_rows($result)==1)
@@ -22,15 +22,14 @@ if(isset($_POST['submit']))
             session_start();
             $_SESSION['AdminLoginId'] = true;
             $_SESSION['admin_name'] = $_POST['admin_name'];
-
-            header("location: ../../NoticePage.php");
+            header("location: $previous_page_url");
         }
         else
         {
         echo"
             <script>
                 alert('Looks like you are not admin');
-                window.location.href='../../NoticePage.php';
+                window.location.href='$previous_page_url';
                 </script>
         ";
         }
@@ -42,6 +41,7 @@ if(isset($_POST['submit']))
 if(isset($_POST['slogin']))
 {
     $query = "SELECT * FROM `stu_login` WHERE  `stu_name`= '$_POST[stu_name]' AND `stu_password`='$_POST[stu_password]'";
+    $previous_page_url =  $_POST['previous_page_url'];
 
     $result = mysqli_query($con,$query);
 
@@ -50,14 +50,18 @@ if(isset($_POST['slogin']))
             session_start();
             $_SESSION['StudentLoginId']=true;
             $_SESSION['userid'] = $_POST['stu_name'];
-            header("location: ../../NoticePage.php");
+            echo"
+            <script>
+                window.location.href='$previous_page_url';
+            </script>
+        ";
         }
         else
         {
         echo"
             <script>
                 alert('Email or Password is wrong');
-                window.location.href='../../NoticePage.php';
+                window.location.href='$previous_page_url';
             </script>
         ";
         }

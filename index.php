@@ -367,7 +367,7 @@ if(isset($_SERVER['HTTPS']) && $_SERVER['HTTP'] === 'on')
       <nav id="nav" class="tab">
         <ul>
           <li class="text">You are signed in</li>
-          <li><a style='color: #cd6161;' href="./index_files/Data/logout.php">Signout</a></li>
+          <li><a style='color: #cd6161;' href="./index_files/Data/logout.php?previous_page_url=<?php echo $current_page_url; ?>">Signout</a></li>
           <a id="go_back_btn" class="button_css setting">Go Back</a>
         </ul>
       </nav>
@@ -380,6 +380,7 @@ else
         <form action="./index_files/Data/login.php" method="post">
           <ul>
             <li class="text">Admin Login</li>
+            <input type="hidden" name="previous_page_url" value='<?php echo $current_page_url; ?>'>
             <li><input type="text" placeholder="Admin name *" name='admin_name' class="button_css input_text_css"
                 require></li>
             <li><input type="password" placeholder="Password *" name='admin_password' class="button_css input_text_css"
@@ -414,7 +415,7 @@ else
             <div id="edit_del_holder">
               <form action="./index_files/Data/edit_notice.php" method="get">
                 <input type="hidden" name="notice_id" value='<?php echo $res['notice_id']; ?>'>
-                <input type="hidden" name="previews_page_url" value='<?php echo $current_page_url; ?>'>
+                <input type="hidden" name="previous_page_url" value='<?php echo $current_page_url; ?>'>
                 <button type='submit' name='edit_submit' class="edit_del_btn">
                   <svg xmlns="http://www.w3.org/2000/svg" class="edit" fill="#fff" style="cursor:pointer;" version="1.0"
                     width="17.000000pt" height="17.000000pt" viewBox="0 0 512.000000 512.000000"
@@ -442,7 +443,7 @@ else
               </form>
               <form action="./index_files/Data/remove_notice.php" method="get">
                 <input type="hidden" name="notice_id" value='<?php echo $res['notice_id']; ?>'>
-                <input type="hidden" name="previews_page_url" value='<?php echo $current_page_url; ?>'>
+                <input type="hidden" name="previous_page_url" value='<?php echo $current_page_url; ?>'>
                 <button type='submit' name='del_submit' class="edit_del_btn">
                   <svg xmlns="http://www.w3.org/2000/svg" class="cancel" fill="#fff" viewBox="0 0 30 30" width="30px"
                     style="cursor:pointer;" height="30px">

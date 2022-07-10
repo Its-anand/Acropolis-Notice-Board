@@ -185,7 +185,7 @@ if(!isset($_SESSION['AdminLoginId']))
 if(isset($_GET['edit_submit']))
 {
     $notice_id = $_GET['notice_id'];
-    $previews_page_url =  $_GET['previews_page_url'];
+    $previous_page_url =  $_GET['previous_page_url'];
     $query = "SELECT * FROM `notice` WHERE  `notice_id`= '$notice_id'";
     $result = mysqli_query($con, $query);
     $result_fetch = mysqli_fetch_assoc($result);
@@ -205,7 +205,7 @@ if(isset($_GET['edit_submit']))
       echo"
       <script>
       alert('Updated');
-      window.location.href='$previews_page_url';
+      window.location.href='$previous_page_url';
       </script>
       ";     }
     else
@@ -213,7 +213,7 @@ if(isset($_GET['edit_submit']))
       echo"
       <script>
       alert('Failed');
-      window.location.href='$previews_page_url';
+      window.location.href='$previous_page_url';
       </script>
       ";     }
   }
@@ -235,7 +235,7 @@ if(isset($_GET['edit_submit']))
               class="button_css notice_writer_input_css" ></li>
           <li><input type="submit" name="notice_submit" class="notice_submit" value="Submit"></li>
           <div class="go_back_holder" style="width:100%;">
-            <a style="text-align: center;" id="go_back_btn" href='<?php echo $previews_page_url;?>' class="button_css ">Go Back</a>
+            <a style="text-align: center;" id="go_back_btn" href='<?php echo $previous_page_url;?>' class="button_css ">Go Back</a>
           </div>
         </ul>
       </form>
@@ -249,13 +249,13 @@ if(isset($_GET['edit_submit']))
     if($result)
     {
       echo "Updated
-      window.location.href='$previews_page_url';
+      window.location.href='$previous_page_url';
       ";
     }
     else
     {
       echo "Failed
-      window.location.href='$previews_page_url';
+      window.location.href='$previous_page_url';
       ";
     }
   }
@@ -267,7 +267,7 @@ else
         echo"
         <script>
         alert('Click the submit button first');
-        window.location.href='$previews_page_url';
+        window.location.href='$previous_page_url';
         </script>
         "; 
     }

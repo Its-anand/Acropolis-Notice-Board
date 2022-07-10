@@ -8,7 +8,7 @@ if(!isset($_SESSION['AdminLoginId']))
 if(isset($_GET['del_saved_submit']))
 {
 $notice_id = $_GET['notice_id'];
-$previews_page_url =  $_GET['previews_page_url'];
+$previous_page_url =  $_GET['previous_page_url'];
 $query = "SELECT * FROM saved where `notice_id` = '$notice_id'";
 $result = mysqli_query($con,$query);
     if($result)
@@ -20,7 +20,7 @@ $result = mysqli_query($con,$query);
             echo"
             <script>
             alert('Saved notice has been removed');
-            window.location.href='$previews_page_url';
+            window.location.href='$previous_page_url';
             </script>
             "; 
         }
@@ -29,7 +29,7 @@ $result = mysqli_query($con,$query);
             echo"
             <script>
             alert('Sorry! Notice can't be deleted due to some error.);
-            window.location.href='$previews_page_url';
+            window.location.href='$previous_page_url';
             </script>
             ";  
         }
@@ -39,7 +39,7 @@ $result = mysqli_query($con,$query);
         echo"
         <script>
         alert('Notice not found');
-        window.location.href='$previews_page_url';
+        window.location.href='$previous_page_url';
         </script>
         "; 
     }   
@@ -50,7 +50,7 @@ else
         echo"
         <script>
         alert('Click the delete button first');
-        window.location.href='$previews_page_url';
+        window.location.href='$previous_page_url';
         </script>
         "; 
     }

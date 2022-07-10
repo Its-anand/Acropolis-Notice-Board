@@ -10,6 +10,10 @@ if(isset($_SESSION['StudentLoginId']) && $_SESSION['StudentLoginId']==true)
 {
    $userId = $_SESSION['userid'];
 }
+else if(isset($_SESSION['AdminLoginId']) && $_SESSION['AdminLoginId']==true)
+{
+   $userId = $_SESSION['admin_name'];
+}
 
 //Copy current page url in a variable
 if(isset($_SERVER['HTTPS']) && $_SERVER['HTTP'] === 'on')
@@ -55,7 +59,8 @@ if(isset($_SESSION['StudentLoginId']) && $_SESSION['StudentLoginId']==true)
          <li class="student_saved_notices_btn">Saved Notices</li>
          <li class="about">About</li>
          <li class="contactus">Contact Us</li>
-         <li><a style='color: #cd6161;' href="./index_files/Data/logout.php">Signout</a></li>
+         <li><a style='color: #cd6161;'
+               href="./index_files/Data/logout.php?previous_page_url=<?php echo $current_page_url; ?>">Signout</a></li>
          <a id="go_back_btn" class="button_css setting">Go Back</a>
       </ul>
    </nav>
@@ -71,7 +76,8 @@ else if(isset($_SESSION['AdminLoginId']) && $_SESSION['AdminLoginId']==true)
          <li class="old_notices"><a href="./index.php">Old Notices</a></li>
          <li class="admin_saved_notices_btn">Saved Notices</li>
          <li class="contactus">Contact Us</li>
-         <li><a style='color: #cd6161;' href="./index_files/Data/logout.php">Signout</a></li>
+         <li><a style='color: #cd6161;'
+               href="./index_files/Data/logout.php?previous_page_url=<?php echo $current_page_url; ?>">Signout</a></li>
          <a id="go_back_btn" class="button_css setting">Go Back</a>
       </ul>
    </nav>
@@ -101,6 +107,7 @@ else
 
          <div class='comment_section'>
             <?php
+            
                $commentQuery = "SELECT * FROM `comments` WHERE notice_id = '$notice_id' AND user_id = '$userId' ";
                $commentResult = mysqli_query($con,$commentQuery);
                if($commentResult)
@@ -116,15 +123,15 @@ else
                   ?>
 
             <section>
-               <h3 style="margin: 0px 0 0 1px;"><?php echo $res['user_id']; ?></h3>
-               <p style='margin: 4px 0px 10px 0px;'><?php echo $res['comment']; ?></p>
+               <h3 style="margin: 2.7rem 0 0 1px; "><?php echo $res['user_id']; ?></h3>
+               <p style='margin: 1px 0px 50px 0px;'><?php echo $res['comment']; ?></p>
             </section>
 
             <?php
                   }
                  }
                }
-         ?>
+             ?>
          </div>
 
          <li>
@@ -146,7 +153,7 @@ if(isset($_SESSION['StudentLoginId']) && $_SESSION['StudentLoginId']==true)
 {
 ?>
    <nav id="s_login" class="tab ">
-      <form action="./index_files/Data/login.php" method="post">
+      <form>
          <ul>
             <li class="text">You have already signed in</li>
             <a id="go_back_btn" href='./index_files/Data/logout.php' class="button_css a_panel_btn">Log Out</a> <br>
@@ -163,6 +170,7 @@ else
       <form action="./index_files/Data/login.php" method="post">
          <ul>
             <li class="text">Student Login</li>
+            <input type="hidden" name="previous_page_url" value='<?php echo $current_page_url; ?>'>
             <li><input type="text" name='stu_name' placeholder="Username *" class="button_css input_text_css"></li>
             <li><input type="password" name='stu_password' placeholder="Password *" class="button_css input_text_css">
             </li>
@@ -193,6 +201,8 @@ else
       <form action="./index_files/Data/login.php" method="post">
          <ul>
             <li class="text">Admin Login</li>
+            <input type="hidden" name="previous_page_url" value='<?php echo $current_page_url; ?>'>
+
             <li><input type="text" placeholder="Admin name *" name='admin_name' class="button_css input_text_css"
                   require></li>
             <li><input type="password" placeholder="Password *" name='admin_password' class="button_css input_text_css"
@@ -212,6 +222,7 @@ if(isset($_SESSION['AdminLoginId']) && $_SESSION['AdminLoginId']==true)
       <form action="./index_files/Data/createNotice.php" method="post">
          <ul>
             <li class="notice_head">Create Notice</li>
+            <input type="hidden" name='current_page_url' value='<?php echo $current_page_url;?>'>
             <li><input type="date" name='notice_date' class="button_css input_text_css" require></li>
             <li><input type="text" name='notice_title' placeholder='Notice Title *'
                   class="button_css notice_heading_input_css" require></li>
@@ -268,7 +279,7 @@ else
                   <div id="edit_del_holder">
                      <form action="./index_files/Data/remove_saved_notice.php" method="get">
                         <input type="hidden" name="notice_id" value='<?php echo $res['notice_id']; ?>'>
-                        <input type="hidden" name="previews_page_url" value='<?php echo $current_page_url; ?>'>
+                        <input type="hidden" name="previous_page_url" value='<?php echo $current_page_url; ?>'>
                         <button type='submit' name='del_saved_submit' class="edit_del_btn">
                            <svg xmlns="http://www.w3.org/2000/svg" class="cancel" fill="#fff" viewBox="0 0 30 30"
                               width="30px" style="cursor:pointer;" height="30px">
@@ -332,7 +343,7 @@ else
                   <div id="edit_del_holder">
                      <form action="./index_files/Data/remove_saved_notice.php" method="get">
                         <input type="hidden" name="notice_id" value='<?php echo $res['notice_id']; ?>'>
-                        <input type="hidden" name="previews_page_url" value='<?php echo $current_page_url; ?>'>
+                        <input type="hidden" name="previous_page_url" value='<?php echo $current_page_url; ?>'>
                         <button type='submit' name='del_saved_submit' class="edit_del_btn">
                            <svg xmlns="http://www.w3.org/2000/svg" class="cancel" fill="#fff" viewBox="0 0 30 30"
                               width="30px" style="cursor:pointer;" height="30px">
@@ -415,6 +426,15 @@ else
                $notice_writer_role=$result_fetch['notice_writer_role'];
                $notice_writer_name=$result_fetch['notice_writer_name'];
             }
+            else
+            {
+            echo"
+                <script>
+                    alert('Please click on the notice first');
+                    window.location.href='index.php';
+                    </script>
+            ";
+            }
             ?>
             <p>Acropolis Institute<br>of Technology And Research</p>
             <p id="date">Date: <?php echo $notice_date; ?></p>
@@ -437,7 +457,7 @@ if(isset($_SESSION['StudentLoginId']) && $_SESSION['StudentLoginId']==true)
 {
   echo"
   <form action='./index_files/Data/like.php' method='post' class='navigation_panel_form'>
-  <input type='hidden' name='notice_id' value='<?php echo $notice_id;?>'>
+  <input type='hidden' name='notice_id' value='$notice_id'>
          <input type='hidden' name='notice_url' value='$current_page_url'>
          <button type='submit' name='like_submit' class='navigation_panel_button_css'>
             <img title='Like' class='button_style' src='./index_files/image/like.jpg' width='50px' alt=''>
@@ -448,7 +468,7 @@ if(isset($_SESSION['StudentLoginId']) && $_SESSION['StudentLoginId']==true)
          {
          echo"
          <form action='./index_files/Data/like_admin.php' method='post' class='navigation_panel_form'>
-            <input type='hidden' name='notice_id' value='<?php echo $notice_id;?>'>
+            <input type='hidden' name='notice_id' value='$notice_id'>
             <input type='hidden' name='notice_url' value='$current_page_url'>
             <button type='submit' name='admin_like_submit' class='navigation_panel_button_css'>
                <img title='Like' class='button_style' src='./index_files/image/like.jpg' width='50px' alt=''>
@@ -478,6 +498,12 @@ if(isset($_SESSION['StudentLoginId']) && $_SESSION['StudentLoginId']==true)
   echo"
   <img title='Comment' class='button_style comment_btn' src='./index_files/image/comment.jpg' alt=''>
   ";
+}
+else if(isset($_SESSION['AdminLoginId']) && $_SESSION['AdminLoginId']==true)
+{
+   echo"
+   <img title='Comment' class='button_style comment_btn' src='./index_files/image/comment.jpg' alt=''>
+   ";
 }
 else
 {

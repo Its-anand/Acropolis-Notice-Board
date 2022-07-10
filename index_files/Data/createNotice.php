@@ -16,7 +16,7 @@
 <?php 
 include 'connection.php';
 if(isset($_POST['notice_submit']))
-{   
+{   $previous_page_url =  $_POST['current_page_url'];
     $notice_date=$_POST['notice_date'];
     $notice_title = $_POST['notice_title'];
     $notice_body = $_POST['notice_body'];
@@ -30,7 +30,7 @@ if(isset($_POST['notice_submit']))
         echo"
         <script>
         alert('Uploaded Successfully');
-        window.location.href='../../NoticePage.php';
+        window.location.href='$previous_page_url';
         </script>
         ";
     }
@@ -39,7 +39,7 @@ if(isset($_POST['notice_submit']))
         echo"
         <script>
         alert('Upload Failed');
-        window.location.href='../../NoticePage.php';
+        window.location.href='$previous_page_url';
         </script>
         ";
     }

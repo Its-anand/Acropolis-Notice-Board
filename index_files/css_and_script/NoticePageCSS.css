@@ -435,7 +435,7 @@ border-image-slice: 34 34 38 34;
 border-image-width: 15px 15px 15px 15px;
 border-image-outset: 3px 3px 3px 3px;
 border-image-repeat: stretch stretch;
-border-image-source: url("./index_files/image/input_frame.png");
+border-image-source: url("../image/input_frame.png");
 border-style: solid;
 color: #fff;
 font-family: 'Fredericka the Great';
