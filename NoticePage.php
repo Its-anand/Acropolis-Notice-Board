@@ -104,11 +104,11 @@ else
 
    <nav id="comment_system" class="tab ">
       <ul>
-
+         <h3>Comments</h3>
          <div class='comment_section'>
             <?php
             
-               $commentQuery = "SELECT * FROM `comments` WHERE notice_id = '$notice_id' AND user_id = '$userId' ";
+               $commentQuery = "SELECT * FROM `comments` WHERE notice_id = '$notice_id'";
                $commentResult = mysqli_query($con,$commentQuery);
                if($commentResult)
                {
@@ -317,7 +317,7 @@ else
    </nav>
 
    <nav id="student_saved_notices" class="tab ">
-      <p class="text_saved">s Saved notice</p>
+      <p class="text_saved">Saved notice</p>
 
       <ul>
          <?php
