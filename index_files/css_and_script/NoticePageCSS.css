@@ -1,0 +1,661 @@
+@font-face {
+  font-family: chalk-font;
+  src: url("../font/chalk2.ttf");
+}
+
+body {
+  margin: 0%;
+  padding: 0%;
+  background-color: #065F04;
+  font-family: 'Fredericka the Great';
+  color: #fff;
+  overflow: hidden;
+  -webkit-user-select: none;
+  -moz-user-select: -moz-none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+#notice_frame {
+  border-image-slice: 27 27 27 27;
+  border-image-width: 20px 20px 20px 20px;
+  border-image-outset: 0px 0px 0px 0px;
+  border-image-repeat: stretch stretch;
+  border-image-source: url("../image/border.png");
+  border-style: solid;
+  width: 100%;
+  height: 100vh;
+  box-sizing: border-box;
+  margin: 0%;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 15px;
+  z-index: 100;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #7e4f44; 
+  box-shadow: inset 0 0 6px rgb(0 0 0 / 30%);
+  -webkit-box-shadow: inset 0 0 6px rgb(0 0 0 / 30%);
+  z-index: 100;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  box-shadow: inset 0 0 6px rgb(0 0 0 / 30%);
+  -webkit-box-shadow: inset 0 0 6px rgb(0 0 0 / 30%);
+  background-color: #853521;
+  border-radius: 10px;
+  z-index: 100;
+}
+
+input::placeholder,
+.notice_body_input_css::placeholder {
+  font-size: 1rem;
+  color: rgba(229, 227, 227, 0.737);
+}
+
+.notice_container {
+  width: calc(100vw - 26px);
+  margin: 20px 0 0 20px;
+  height: calc(100vh - 45px);
+  padding: 0 15rem;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+#menu_button {
+  width: 45px;
+  height: auto;
+  cursor: pointer;
+  position: absolute;
+  right: 0rem;
+  top: 0rem;
+  z-index: 100;
+
+}
+
+.button_css {
+  outline: none;
+  background-color: transparent;
+  border-image-slice: 34 34 38 34;
+  border-image-width: 15px 15px 15px 15px;
+  border-image-outset: 3px 3px 3px 3px;
+  border-image-repeat: stretch stretch;
+  border-image-source: url("../image/button_frame1.png");
+  border-style: solid;
+  color: #fff;
+  font-family: 'Fredericka the Great';
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+
+
+.navigation_panel_button_css {
+  padding: 0px;
+  border: 0px;
+  outline: none;
+  margin: 0px;
+  background: transparent;
+}
+
+
+
+.textarea_css {
+  outline: none;
+  background-color: transparent;
+  border-image-slice: 34 34 38 34;
+  border-image-width: 15px 15px 15px 15px;
+  border-image-outset: 3px 3px 3px 3px;
+  border-image-repeat: stretch stretch;
+  border-image-source: url("../image/input_frame.png");
+  border-style: solid;
+  color: #fff;
+  font-family: 'Fredericka the Great';
+  font-size: 1.2rem;
+  resize: none;
+  cursor: pointer;
+  width: 300px;
+
+}
+
+#go_back_btn {
+  width: 200px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.input_text_css {
+  width: 250px;
+  height: 30px;
+
+}
+
+#create_notice {
+  width: calc(100vw - 26px);
+  height: calc(100vh - 45px);
+  padding: 0 15rem;
+  box-sizing: border-box;
+  overflow-y: auto;
+  ;
+}
+
+.notice_head {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.go_back_holder {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.notice_heading_input_css {
+  height: 2rem;
+  width: 100%;
+  padding: 0 10px;
+}
+
+.notice_writer_input_css {
+  height: 2rem;
+  width: 250px;
+  padding: 0 10px;
+}
+
+.notice_body_input_css {
+  height: 23rem;
+  width: 100%;
+  padding: 10px;
+}
+
+.notice_submit {
+  outline: none;
+  background-color: transparent;
+  border-image-slice: 34 34 38 34;
+  border-image-width: 15px 15px 15px 15px;
+  border-image-outset: 3px 3px 3px 3px;
+  border-image-repeat: stretch stretch;
+  border-image-source: url(../image/button_frame1.png);
+  border-style: solid;
+  color: #fff;
+  font-family: 'Fredericka the Great';
+  font-size: 1.2rem;
+  width: 139px;
+  height: 38px;
+  cursor: pointer;
+}
+
+.contactus_text_css {
+  width: 300px;
+  height: 40px;
+}
+
+.tab {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  width: calc(100vw - 40px);
+  height: calc(100vh - 40px);
+  background-color: #065F04;
+  display: none;
+  box-sizing: border-box;
+}
+
+nav ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0px;
+  padding: 0px;
+}
+.text_saved
+{
+  color: #fff;
+  font-size: 2.5rem;
+  margin-bottom: 5rem;
+  text-align: center;
+  margin-top: 2rem;
+  width: 100%;
+}
+.go_back_holder
+{
+  display: flex;
+  justify-content: center;
+  margin: 69px 0;
+}
+#student_saved_notices ul, #admin_saved_notices ul
+{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0px;
+  flex-wrap: wrap;
+  flex-direction: row;
+  height: unset;
+  margin: unset;
+
+}
+
+#create_notice ul {
+  display: block;
+  width: 100%;
+}
+
+/* width */
+#create_notice::-webkit-scrollbar {
+  width: 15px;
+}
+
+/* Track */
+#create_notice::-webkit-scrollbar-track {
+  background: #7e4f44;
+  box-shadow: inset 0 0 6px rgb(0 0 0 / 30%);
+  -webkit-box-shadow: inset 0 0 6px rgb(0 0 0 / 30%);
+  border-radius: unset;
+}
+
+/* Handle */
+#create_notice::-webkit-scrollbar-thumb {
+  box-shadow: inset 0 0 6px rgb(0 0 0 / 30%);
+  -webkit-box-shadow: inset 0 0 6px rgb(0 0 0 / 30%);
+  background-color: #853521;
+  border-radius: 10px;
+}
+
+#create_notice li {
+  width: 100%;
+
+}
+
+nav li {
+  color: #fff;
+  list-style: none;
+  font-family: 'Fredericka the Great';
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  cursor: pointer;
+}
+
+nav a {
+  text-decoration: none;
+  color: #fff;
+  font-family: 'Fredericka the Great';
+}
+
+.menu_header {
+  text-align: center;
+}
+
+.menu_header :nth-child(1) {
+  font-size: 1.7rem;
+  margin-top: 0px;
+}
+
+#date {
+  text-align: left;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
+
+.menu_header :nth-child(3) {
+  font-size: 2.7rem;
+  margin: 0%;
+}
+
+.menu_header :nth-child(4) {
+  font-size: 2rem;
+  margin: 1rem 0;
+}
+
+.menu_header :nth-child(5) {
+  font-size: 1.5rem;
+  margin: 0%;
+}
+
+.menu_header :nth-child(6) {
+  font-size: 1.5rem;
+  margin-top: 2rem;
+}
+
+#notice_writer {
+  font-size: 1.5rem;
+  text-align: left;
+  margin-top: 2rem;
+}
+
+.notice_nav_setting {
+  border: 3px solid #fff;
+  width: 31.25rem;
+  height: 3rem;
+  margin-bottom: 1rem;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 62px 1fr;
+  justify-items: end;
+}
+
+#word_no_holder,
+#edit_del_holder {
+  display: flex;
+  justify-content: flex-end;
+}
+
+#word_no {
+  margin: 7px 0;
+  font-weight: bold;
+  font-size: 1.6rem;
+}
+
+.notice_head {
+  font-size: 2.5rem;
+  margin-bottom: 5rem;
+}
+
+.edit_del_btn {
+  border: none;
+  height: 3rem;
+  box-sizing: border-box;
+  background: transparent;
+}
+
+#empty {
+  background-color: #065F04;
+  width: 100%;
+  height: 3rem;
+}
+
+#abt {
+  padding: 0 15rem;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+#botton_container {
+  padding: 10px;
+  box-sizing: border-box;
+  position: absolute;
+  bottom: -8px;
+  right: 2rem;
+  width: 14rem;
+  height: 4rem;
+  background: #752e21;
+  border-image-slice: 10 12 13 13;
+  border-image-width: 7px 7px 7px 7px;
+  border-image-outset: 0px 0px 0px 0px;
+  border-image-repeat: stretch stretch;
+  border-image-source: url("../image/border.png");
+  border-style: solid;
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  justify-content: space-between;
+}
+
+.button_style {
+  width: 35px;
+  height: auto;
+  cursor: pointer;
+}
+.old_notices a
+{
+   color:#fff;
+}
+.comment_section
+{
+ width: 50.4rem;
+ height: 350px;
+ border: 3px solid #fff;
+ box-sizing: border-box;
+ padding: 10px;
+ overflow-y: auto;
+}
+
+.comment_form
+{
+display: flex;
+justify-content: center;
+ align-items: center;
+ flex-direction: column;
+}
+
+#comment_box
+{
+   outline: none;
+background-color: transparent;
+border-image-slice: 34 34 38 34;
+border-image-width: 15px 15px 15px 15px;
+border-image-outset: 3px 3px 3px 3px;
+border-image-repeat: stretch stretch;
+border-image-source: url("../image/input_frame.png");
+border-style: solid;
+color: #fff;
+font-family: 'Fredericka the Great';
+font-size: 1.2rem;
+resize: none;
+cursor: pointer;
+width: 50.1rem;
+ height: 100px;
+padding: 10px;
+box-sizing: border-box;
+
+}
+#admin_saved_notices, #student_saved_notices
+{
+  width: calc(100vw - 26px);
+  height: calc(100vh - 42.5px);
+  overflow-y: scroll;
+  box-sizing: border-box;
+  padding: 0 7rem;
+
+}
+.notice_body {
+  width: 31.25rem;
+}
+.edit_del_btn {
+  border: none;
+  box-sizing: border-box;
+  background: transparent;
+}
+.notice_iframe {
+  border: 3px solid #fff;
+  width: 100%;
+  height: 18.75rem;
+  box-sizing: border-box;
+  overflow-y: hidden;
+  text-align: center;
+  padding: 25px;
+  margin-bottom: 2rem;
+}
+.notice_iframe_heading, .notice_iframe_writer_name {
+  margin: 0px;
+}
+.notice_iframe_date, .notice_iframe_writer_role, .notice_iframe_writer_name {
+  text-align: left;
+}
+.notice_iframe_body {
+  margin: 0px;
+}
+#word_no_holder, #edit_del_holder {
+  display: flex;
+  justify-content: flex-end;
+}
+#word_no {
+  margin: 9px 0;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+.notice_nav_setting {
+  border: 3px solid #fff;
+  width: 100%;
+  height: 3rem;
+  margin-bottom: 8px;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 62px 1fr;
+  justify-items: end;
+}
+
+/* saved */
+.notice_iframe:hover
+{
+  overflow-y: auto;
+}
+    /* width */
+    .notice_iframe::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    /* Track */
+    .notice_iframe::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: unset;
+      box-shadow: unset;
+      -webkit-box-shadow: unset;
+
+    }
+
+    /* Handle */
+    .notice_iframe::-webkit-scrollbar-thumb {
+      background: #fff;
+      border-radius: unset;
+      box-shadow: unset;
+      -webkit-box-shadow: unset;
+
+    }
+
+    .notice_iframe::-webkit-scrollbar-thumb:hover {
+      background: rgb(255, 223, 223);
+      border-radius: unset;
+      box-shadow: unset;
+      -webkit-box-shadow: unset;
+
+    }
+#comment_submit_btn
+{
+   margin-top:20px;
+}
+.comment_section section
+{
+border-bottom: 1px dashed #fff;
+margin-bottom: 10px;
+}
+/*Scroll bar of */
+/* width */
+.notice_container::-webkit-scrollbar {
+  width: 15px;
+  z-index: 100;
+}
+
+/* Track */
+.notice_container::-webkit-scrollbar-track {
+  background: #7e4f44;
+  box-shadow: inset 0 0 6px rgb(0 0 0 / 30%);
+  -webkit-box-shadow: inset 0 0 6px rgb(0 0 0 / 30%);
+  border-radius: 10px;
+  z-index: 100;
+}
+
+/* Handle */
+.notice_container::-webkit-scrollbar-thumb {
+  box-shadow: inset 0 0 6px rgb(0 0 0 / 30%);
+  -webkit-box-shadow: inset 0 0 6px rgb(0 0 0 / 30%);
+  background-color: #853521;
+  border-radius: 10px;
+  z-index: 100;
+}
+/*Scroll bar of comment section*/
+
+/* width */
+.comment_section::-webkit-scrollbar {
+width: 10px;
+}
+
+/* Track */
+.comment_section::-webkit-scrollbar-track {
+background: #f1f1f1; 
+border-radius: unset;
+box-shadow: unset;
+-webkit-box-shadow: unset;
+
+}
+
+/* Handle */
+.comment_section::-webkit-scrollbar-thumb {
+background: #fff;
+border-radius: unset;
+box-shadow: unset;
+-webkit-box-shadow: unset;
+
+}
+.comment_section::-webkit-scrollbar-thumb:hover {
+background: rgb(255, 223, 223);
+border-radius: unset;
+box-shadow: unset;
+-webkit-box-shadow: unset;
+
+}
+
+/*Scroll bar of comment_box*/
+
+/* width */
+#comment_box::-webkit-scrollbar {
+width: 8px;
+}
+
+/* Track */
+#comment_box::-webkit-scrollbar-track {
+background: #f1f1f1; 
+border-radius: unset;
+box-shadow: unset;
+-webkit-box-shadow: unset;
+
+}
+
+/* Handle */
+#comment_box::-webkit-scrollbar-thumb {
+background: #fff;
+border-radius: unset;
+box-shadow: unset;
+-webkit-box-shadow: unset;
+
+}
+#comment_box::-webkit-scrollbar-thumb:hover {
+background: rgb(255, 223, 223);
+border-radius: unset;
+box-shadow: unset;
+-webkit-box-shadow: unset;
+
+}
+
+
+@media screen and (max-width: 1200px) {
+
+  .notice_container,
+  #create_notice {
+    padding: 0 5rem;
+  }
+
+}
+
+@media screen and (max-width: 800px) {
+
+  .notice_container,
+  #create_notice {
+    padding: 0 2rem 0 10px;
+  }
+
+  .input_text_css,
+  .notice_writer_input_css {
+    width: 100%;
+  }
+
+}
