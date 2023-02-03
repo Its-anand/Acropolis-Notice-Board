@@ -171,7 +171,7 @@ else
          <ul>
             <li class="text">Student Login</li>
             <input type="hidden" name="previous_page_url" value='<?php echo $current_page_url; ?>'>
-            <li><input type="text" name='stu_name' placeholder="Username *" class="button_css input_text_css"></li>
+            <li><input type="text" name='stu_name' placeholder="Student email *" class="button_css input_text_css"></li>
             <li><input type="password" name='stu_password' placeholder="Password *" class="button_css input_text_css">
             </li>
             <li><input type="submit" name='slogin' value="Submit" class="button_css"></li>
