@@ -24,7 +24,7 @@ To run this project locally, you need to have a web server with PHP support and 
 
 ## Demo
 Most the features won't work because of the limitation of free hosting please clone and then run locally
-You can see a live demo of this project here: https://acroboard.000webhostapp.com/ 
+You can see a live demo of this project here: https://anandchoudhary.in/projects/Acropolis-Notice-Board/index.php
 
 ## License
 
